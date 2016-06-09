@@ -1,0 +1,20 @@
+py:
+  build: .
+  command: python3 test/test_elasticsearch.py
+  volumes:
+    - ./simhash_db:/var/www/simhash_db
+    - ./test:/var/www/test
+    - ./test.py:/var/www/test.py
+  links:
+    - elasticsearch
+    - mongodb
+
+elasticsearch:
+  image: elasticsearch:2.2
+  ports:
+    - "14200:9200"
+
+mongodb:
+  image: mongo
+  ports:
+    - "14631:27017"

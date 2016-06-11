@@ -47,17 +47,10 @@ class Client(BaseClient):
 
         self.name = name
 
-        # self.client.cluster.health(wait_for_status='yellow', request_timeout=1)
-        # self.docsList = [getattr(self.client, name).documents]
-
-        # Create the indexes (if they exist it's ok)
-        # for j in range(len(self.names)):
-        #     for i in range(self.num_tables):
-        #         self.docsList[j].create_index(str(i), pymongo.ASCENDING)
+        self.client.indices.create(index=self.name, ignore=400)
 
     def delete(self):
         '''Delete this database of simhashes'''
-        # pass
         self.client.indices.delete(index=self.name, ignore=[400, 404])
 
     def insert(self, hash_or_hashes):
@@ -74,15 +67,11 @@ class Client(BaseClient):
             ) for i in range(self.num_tables)) for hsh in hashes
         ]
 
-        # And now insert them
-        docIds = []
         for doc in docs:
-            docIds.append(self.client.index(index=self.name, doc_type=self.name, body=doc))
-            # Force index to refresh
+            self.client.index(index=self.name, doc_type=self.name, body=doc)
 
+        # Force index to refresh
         self.client.indices.refresh(index=self.name)
-
-        return docIds
 
     def get_find_in_table_query(self, hsh, table_num, ranges):
         '''Return all the results found in this particular table'''

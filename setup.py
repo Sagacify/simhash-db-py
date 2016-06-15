@@ -12,6 +12,12 @@ setup(name           = 'simhash_db',
     packages         = ['simhash_db'],
     package_dir      = {'simhash_db': 'simhash_db'},
     dependencies     = [],
+    install_requires = [
+        "elasticsearch >= 2.1.0"
+    ],
+    dependency_links = [
+        'git+https://github.com/Sagacify/simhash-py.git'
+    ],
     classifiers      = [
         'Programming Language :: Python',
         'Intended Audience :: Developers',

@@ -15,8 +15,8 @@ def signed_to_unsigned(integer):
 
 class SimHashHelper(BaseClient):
     '''Our ES backend client'''
-    def __init__(self, name, num_blocks, num_bits, *args, **kwargs):
-        BaseClient.__init__(self, name, num_blocks, num_bits)
+    def __init__(self, num_blocks, num_bits, *args, **kwargs):
+        BaseClient.__init__(self, 'noneed', num_blocks, num_bits)
 
     def build_simhash_indexes(self, hsh):
         return dict((
@@ -24,14 +24,14 @@ class SimHashHelper(BaseClient):
                 unsigned_to_signed(int(self.corpus.tables[i].permute(hsh)))
             ) for i in range(self.num_tables))
 
-    def add_simhash(self, doc, hashOn=['text'], hashField='hash'):
+    def get_simhash(self, hashOn):
         '''
         Add simhash properties to a document
         Hashing from the field "hashOn" and putting the simhash
         structure in the field "hashField"
         '''
-        rawText = ' '.join([doc[f] for f in hashOn])
-        hsh = simhash.hash(rawText)
+
+        hsh = simhash.hash(hashOn)
 
         # Construct the simhash indexes
         hshStruct = self.build_simhash_indexes(hsh)

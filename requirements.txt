@@ -1,0 +1,5 @@
+pymongo == 2.3
+python-dateutil
+gevent
+elasticsearch ~= 2.1.0
+-e git://github.com/Sagacify/simhash-py.git#egg=simhash

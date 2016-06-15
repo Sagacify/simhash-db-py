@@ -73,5 +73,8 @@ def Client(backend, name, num_blocks, num_bits, *args, **kwargs):
     elif backend == 'hbase':
         from .hbase_client import Client as HbaseClient
         return HbaseClient(name, num_blocks, num_bits, *args, **kwargs)
+    elif backend == 'es':
+        from .elasticsearch_client import Client as ElasticsearchClient
+        return ElasticsearchClient(name, num_blocks, num_bits, *args, **kwargs)
     else:
         raise BackendUnsupported('The %s backend is not supported' % backend)

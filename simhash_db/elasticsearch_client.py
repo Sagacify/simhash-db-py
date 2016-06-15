@@ -5,12 +5,7 @@
 import struct
 import time
 from elasticsearch import Elasticsearch
-from elasticsearch.exceptions import ConnectionError
 from . import BaseClient
-import calendar
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-import dateutil.parser
 
 
 def unsigned_to_signed(integer):

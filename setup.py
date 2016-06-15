@@ -6,7 +6,7 @@ from distutils.extension import Extension
 setup(name           = 'simhash_db',
     version          = '0.1.0',
     description      = 'Near-Duplicate Detection with Simhash in Databases',
-    url              = 'http://github.com/seomoz/simhash-db',
+    url              = 'https://github.com/Sagacify/simhash-db-py',
     author           = 'Dan Lecocq',
     author_email     = 'dan@moz.com',
     packages         = ['simhash_db'],

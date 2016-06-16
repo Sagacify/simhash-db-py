@@ -13,7 +13,7 @@ setup(name           = 'simhash_db',
     package_dir      = {'simhash_db': 'simhash_db'},
     dependencies     = [],
     dependency_links = [
-        'git+https://github.com/Sagacify/simhash-py.git#egg=simhash'
+        'git+https://github.com/Sagacify/simhash-py.git@python3#egg=simhash'
     ],
     classifiers      = [
         'Programming Language :: Python',

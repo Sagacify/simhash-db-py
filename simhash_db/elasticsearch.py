@@ -1,5 +1,6 @@
 
 import struct
+import simhash
 from . import BaseClient
 
 
@@ -30,13 +31,7 @@ class SimHashHelper(BaseClient):
         Hashing from the field "hashOn" and putting the simhash
         structure in the field "hashField"
         '''
-
         hsh = simhash.hash(hashOn)
 
         # Construct the simhash indexes
-        hshStruct = self.build_simhash_indexes(hsh)
-
-        # Insert simhash indexes
-        doc[hashField] = hshStruct
-
-        return doc
+        return self.build_simhash_indexes(hsh)

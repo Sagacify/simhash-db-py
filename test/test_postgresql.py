@@ -2,16 +2,21 @@
 
 '''Make sure the Mongo client is sane'''
 
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 import unittest
 from test import BaseTest
 from simhash_db import Client
 
 
-class JudyTest(BaseTest, unittest.TestCase):
-    '''Test the Judy client'''
+class PostgresTest(BaseTest, unittest.TestCase):
+    '''Test the ElasticSearch client'''
     def make_client(self, name, num_blocks, num_bits):
-        return Client('judy', name, num_blocks, num_bits)
 
+        return Client('postgresql', name, num_blocks, num_bits)
 
 if __name__ == '__main__':
     unittest.main()
+

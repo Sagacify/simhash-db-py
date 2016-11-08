@@ -11,4 +11,3 @@ COPY ./setup.py /var/www/setup.py
 
 RUN pip3 install Cython
 RUN pip3 install -r requirements.txt
-RUN python setup.py install

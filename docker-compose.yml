@@ -1,20 +1,23 @@
 py:
   build: .
-  command: python3 test/test_elasticsearch.py
+  command: python3 test/test_postgresql.py
+  # command: python3 bench.py --backend postgresql
+  # command: python3 bench.py --backend postgresql_jsonb
   volumes:
     - ./simhash_db:/var/www/simhash_db
     - ./test:/var/www/test
-    - ./test.py:/var/www/test.py
+    - ./bench.py:/var/www/bench.py
   links:
-    - elasticsearch
-    - mongodb
+    # - elasticsearch
+    - postgresql
 
-elasticsearch:
-  image: elasticsearch:2.2
-  ports:
-    - "14200:9200"
+# elasticsearch:
+#   image: elasticsearch:2.2
+#   ports:
+#     - "14200:9200"
 
-mongodb:
-  image: mongo
+postgresql:
+  image: postgres:9.5
   ports:
-    - "14631:27017"
+    - "14232:5432"
+

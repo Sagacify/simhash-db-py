@@ -2,6 +2,10 @@
 
 '''Make sure the Mongo client is sane'''
 
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 import unittest
 from test import BaseTest
 from simhash_db import Client

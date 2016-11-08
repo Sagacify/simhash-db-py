@@ -12,6 +12,7 @@ class BaseTest(object):
 
     def tearDown(self):
         self.client.delete()
+        # self.client.close()
 
     def test_basic(self):
         '''Make sure we can use the thing in the most basic way'''
@@ -49,18 +50,6 @@ class BaseTest(object):
         results = self.client.find_all(queries)
         for result in results:
             self.assertTrue(len(result) >= 1)
-
-    def test_delete(self):
-        '''Test out that we can in fact delete the database and have it be
-        completely gone'''
-        self.client.insert(1)
-        self.assertEqual(self.client.find_one(1), 1)
-
-        # Delete
-        self.client.delete()
-
-        # And make sure we find nothing
-        self.assertEqual(self.client.find_one(1), None)
 
     def test_exact(self):
         '''Make sure that we can support exact match'''

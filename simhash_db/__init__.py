@@ -55,26 +55,14 @@ class BaseClient(object):
 def Client(backend, name, num_blocks, num_bits, *args, **kwargs):
     '''A factory to return the appropriate client'''
     # Import the appropriate module
-    if backend == 'cassandra':
-        from .cassandra_client import Client as CassClient
-        return CassClient(name, num_blocks, num_bits, *args, **kwargs)
-    elif backend == 'mongo':
-        from .mongo_client import Client as MongoClient
-        return MongoClient(name, num_blocks, num_bits, *args, **kwargs)
-    elif backend == 'riak':
-        from .riak_client import Client as RiakClient
-        return RiakClient(name, num_blocks, num_bits, *args, **kwargs)
-    elif backend == 'judy':
-        from .judy_client import Client as JudyClient
-        return JudyClient(name, num_blocks, num_bits, *args, **kwargs)
-    elif backend == 'redis':
-        from .redis_client import Client as RedisClient
-        return RedisClient(name, num_blocks, num_bits, *args, **kwargs)
-    elif backend == 'hbase':
-        from .hbase_client import Client as HbaseClient
-        return HbaseClient(name, num_blocks, num_bits, *args, **kwargs)
-    elif backend == 'es':
+    if backend == 'es':
         from .elasticsearch_client import Client as ElasticsearchClient
         return ElasticsearchClient(name, num_blocks, num_bits, *args, **kwargs)
+    elif backend == 'postgresql':
+        from .postgresql_client import Client as PostgresqlClient
+        return PostgresqlClient(name, num_blocks, num_bits, *args, **kwargs)
+    elif backend == 'postgresql_jsonb':
+        from .postgresql_client_jsonb import Client as PostgresqlClient
+        return PostgresqlClient(name, num_blocks, num_bits, *args, **kwargs)
     else:
         raise BackendUnsupported('The %s backend is not supported' % backend)
